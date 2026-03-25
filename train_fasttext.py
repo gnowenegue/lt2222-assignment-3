@@ -5,10 +5,10 @@ import os
 import re
 
 
-def tokenize_chinese_sentence(chinese_sentence_text):
+def tokenize(sentence):
     # use a regular expression to keep Latin words/numbers whole and split Chinese into characters
     # this treats each Chinese character as a word while preserving English terms and numbers
-    return re.findall(r"[a-zA-Z0-9]+|[^\s]", str(chinese_sentence_text))
+    return re.findall(r"[a-zA-Z0-9]+|[^\s]", str(sentence))
 
 
 def load_datasets(datasets):
@@ -104,7 +104,7 @@ def main():
     # 2. tokenized the sentences
     print("tokenizing the sentences...")
     tokenized_sentences_list = [
-        tokenize_chinese_sentence(sentence) for sentence in combined_dataframes['text']
+        tokenize(sentence) for sentence in combined_dataframes['text']
     ]
 
     # 3. train the FastText model
@@ -124,7 +124,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    # test `tokenize_chinese_sentence` function
-    # chinese_sentence = "omg 你好，世界123！(abc)的世界"
-    # print(tokenize_chinese_sentence(chinese_sentence))
