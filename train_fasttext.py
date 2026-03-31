@@ -12,7 +12,9 @@ def tokenize(sentence):
 
 
 def load_datasets(datasets):
-    dataframes = [pd.read_csv(dataset, sep='\t') for dataset in datasets]
+    dataframes = [
+        pd.read_csv(dataset, sep='\t') for dataset in datasets
+    ]
     return pd.concat(dataframes)
 
 
@@ -35,7 +37,7 @@ def train_fasttext_model(
 
 def main():
     arg_parser = argparse.ArgumentParser(
-        description="Part 2: Train FastText word embeddings on Chinese Wikipedia sentences."
+        description="Part 2a: Train FastText word embeddings on Chinese Wikipedia sentences."
     )
 
     # arguments for data paths and output
@@ -96,7 +98,7 @@ def main():
     arguments = arg_parser.parse_args()
 
     # 1. load the datasets and combine everything
-    print("loading datasets...")
+    print("loading the datasets...")
     combined_dataframes = load_datasets([arguments.train, arguments.dev, arguments.test])
 
     # print(combined_dataframes)
@@ -108,7 +110,7 @@ def main():
     ]
 
     # 3. train the FastText model
-    print(f"training FastText model with dimension {arguments.dimension}...")
+    print(f"training the FastText model with dimension {arguments.dimension}...")
     fasttext_model = train_fasttext_model(
         tokenized_sentences_list,
         arguments.dimension,
@@ -117,9 +119,12 @@ def main():
     )
 
     # 4. save the FastText model
+    print(f"saving the FastText model to {arguments.output}...")
     os.makedirs(os.path.dirname(arguments.output), exist_ok=True)
     fasttext_model.save(arguments.output)
     print(f"successfully saved the FastText model to {arguments.output}")
+
+
 #
 
 if __name__ == "__main__":

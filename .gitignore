@@ -304,3 +304,6 @@ __marimo__/
 
 # model files
 model/
+
+# embedding files
+embedding/
