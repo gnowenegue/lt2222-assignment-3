@@ -37,7 +37,8 @@ def convert_dataset_to_embedding_matrix(dataset, model):
 
 def main():
     arg_parser = argparse.ArgumentParser(
-        description="Part 2b: Generate averaged sentence embeddings using FastText model."
+        description="Part 2b: Generate averaged sentence embeddings using FastText model.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 
     # configuration for the input dataset and the pre-trained model
@@ -55,7 +56,7 @@ def main():
         type=str,
         default="model/fasttext.model",
         metavar="<path>",
-        help="path to the trained FastText model (default: model/fasttext.model)"
+        help="path to the trained FastText model"
     )
     arg_parser.add_argument(
         "-o",

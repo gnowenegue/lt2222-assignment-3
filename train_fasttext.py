@@ -37,7 +37,8 @@ def train_fasttext_model(
 
 def main():
     arg_parser = argparse.ArgumentParser(
-        description="Part 2a: Train FastText word embeddings on Chinese Wikipedia sentences."
+        description="Part 2a: Train FastText word embeddings on Chinese Wikipedia sentences.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 
     # arguments for data paths and output
@@ -46,21 +47,21 @@ def main():
         type=str,
         default="dataset/train.tsv",
         metavar="<path>",
-        help="path to the training tsv file (default: dataset/train.tsv)"
+        help="path to the training tsv file"
     )
     arg_parser.add_argument(
         "--dev",
         type=str,
         default="dataset/dev.tsv",
         metavar="<path>",
-        help="path to the development tsv file (default: dataset/dev.tsv)"
+        help="path to the development tsv file"
     )
     arg_parser.add_argument(
         "--test",
         type=str,
         default="dataset/test.tsv",
         metavar="<path>",
-        help="path to the testing tsv file (default: dataset/test.tsv)"
+        help="path to the testing tsv file"
     )
     arg_parser.add_argument(
         "-d",
@@ -68,7 +69,7 @@ def main():
         type=int,
         default=100,
         metavar="<number>",
-        help="number of dimensions for the embeddings (default: 100)"
+        help="number of dimensions for the embeddings"
     )
     arg_parser.add_argument(
         "-o",
@@ -76,7 +77,7 @@ def main():
         type=str,
         default="model/fasttext.model",
         metavar="<path>",
-        help="where to save the trained model file (default: model/fasttext.model)"
+        help="where to save the trained model file"
     )
 
     # parameters for model fine-tuning
