@@ -4,7 +4,7 @@
 set -euo pipefail
 
 echo "===== Part 2a — Sentence embeddings (Step 1: Training FastText) ====="
-python train_fasttext.py \
+uv run train_fasttext.py \
   --train dataset/train.tsv \
   --dev dataset/dev.tsv \
   --test dataset/test.tsv \
@@ -12,12 +12,12 @@ python train_fasttext.py \
   --output model/fasttext.model
 
 echo -e "\n===== Part 2b — Sentence embeddings (Step 2: Generating Vectors) ====="
-python generate_embeddings.py --input dataset/train.tsv --output embedding/train.npy
-python generate_embeddings.py --input dataset/dev.tsv --output embedding/dev.npy
-python generate_embeddings.py --input dataset/test.tsv --output embedding/test.npy
+uv run generate_embeddings.py --input dataset/train.tsv --output embedding/train.npy
+uv run generate_embeddings.py --input dataset/dev.tsv --output embedding/dev.npy
+uv run generate_embeddings.py --input dataset/test.tsv --output embedding/test.npy
 
 echo -e "\n===== Part 3 — Neural topic classification ====="
-python train_classifier.py \
+uv run train_classifier.py \
   --train dataset/train.tsv \
   --train_embeddings embedding/train.npy \
   --dev dataset/dev.tsv \
@@ -26,7 +26,7 @@ python train_classifier.py \
   --plot report/evaluation_plot.png
 
 echo -e "\n===== Part 4 — Evaluation ====="
-python evaluate_classifier.py \
+uv run evaluate_classifier.py \
   --input dataset/test.tsv \
   --embeddings embedding/test.npy \
   --confusion_matrix report/confusion_matrix.png
