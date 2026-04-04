@@ -47,3 +47,13 @@ If you wish to run each script individually with full explicit parameters, pleas
 ## Data Strategy (Latin characters and numbers)
 
 To handle Latin characters (English words) and numbers, we use a regular expression (`r"[a-zA-Z0-9]+|[^\s]"`) to keep them whole as single tokens while splitting the surrounding Chinese text into individual characters. This preserves the semantic meaning of English words and numbers while maintaining the character-based approach for Chinese.
+
+## Documentation
+
+### Transcript
+
+The code was run on MLTGPU server under `/scratch` storage. Please refer to the full [transcript](transcript_mltgpu_scratch.txt).
+
+## Part Bonus 1 - Validation
+
+![Performance Plot](performance_plot_mltgpu_scratch.png)

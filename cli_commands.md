@@ -55,7 +55,7 @@ uv run train_classifier.py \
   --learning_rate 0.001 \
   --hidden_size 64 \
   --output model/classifier.pth \
-  --plot report/evaluation_plot.png
+  --plot report/performance_plot.png
 ```
 
 ## Part 4 — Evaluation
