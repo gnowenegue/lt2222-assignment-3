@@ -1,5 +1,8 @@
-# 1. Train FastText word embeddings on all datasets
-# we save the model in the 'model' folder
+# Commands Available
+
+## Part 2a — Train FastText model embeddings
+
+```bash
 python train_fasttext.py \
   --train dataset/train.tsv \
   --dev dataset/dev.tsv \
@@ -8,30 +11,37 @@ python train_fasttext.py \
   --output model/fasttext.model \
   --window_size 5 \
   --min_count 1
+```
 
-# 2. Generate averaged sentence embeddings (Training set)
-# we save the embedding matrix in the 'embedding' folder
+## Part 2b — Generate embeddings
+
+**Training set:**
+```bash
 python generate_embeddings.py \
   --input dataset/train.tsv \
   --model model/fasttext.model \
   --output embedding/train.npy
+```
 
-# 3. Generate averaged sentence embeddings (Validation set)
-# we save the embedding matrix in the 'embedding' folder
+**Validation set:**
+```bash
 python generate_embeddings.py \
   --input dataset/dev.tsv \
   --model model/fasttext.model \
   --output embedding/dev.npy
+```
 
-# 4. Generate averaged sentence embeddings (Test set)
-# we save the embedding matrix in the 'embedding' folder
+**Test set:**
+```bash
 python generate_embeddings.py \
   --input dataset/test.tsv \
   --model model/fasttext.model \
   --output embedding/test.npy
+```
 
-# 5. Train the neural topic classifier
-# we save the accuracy and loss plot in the 'report' folder
+## Part 3 — Neural topic classification
+
+```bash
 python train_classifier.py \
   --train dataset/train.tsv \
   --train_embeddings embedding/train.npy \
@@ -44,14 +54,17 @@ python train_classifier.py \
   --hidden_size 64 \
   --output model/classifier.pth \
   --plot report/evaluation_plot.png
+```
 
-# 6. Evaluate the classifier and generate a confusion matrix
-# we save the confusion matrix heatmap in the 'report' folder
+## Part 4 — Evaluation
+
+```bash
 python evaluate_classifier.py \
   --input dataset/test.tsv \
   --embeddings embedding/test.npy \
   --model model/classifier.pth \
   --labels dataset/labels.txt \
   --hidden_size 64 \
-  --batch_size 32 \
+  --batch_size 128 \
   --confusion_matrix report/confusion_matrix.png
+```
