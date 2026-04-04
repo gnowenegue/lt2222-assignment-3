@@ -1,9 +1,11 @@
 # Commands Available
 
+> **Note:** You can use the `-h` or `--help` flag with any of these scripts for detailed information about all available command-line arguments.
+
 ## Part 2a — Train FastText model embeddings
 
 ```bash
-python train_fasttext.py \
+uv run train_fasttext.py \
   --train dataset/train.tsv \
   --dev dataset/dev.tsv \
   --test dataset/test.tsv \
@@ -17,7 +19,7 @@ python train_fasttext.py \
 
 **Training set:**
 ```bash
-python generate_embeddings.py \
+uv run generate_embeddings.py \
   --input dataset/train.tsv \
   --model model/fasttext.model \
   --output embedding/train.npy
@@ -25,7 +27,7 @@ python generate_embeddings.py \
 
 **Validation set:**
 ```bash
-python generate_embeddings.py \
+uv run generate_embeddings.py \
   --input dataset/dev.tsv \
   --model model/fasttext.model \
   --output embedding/dev.npy
@@ -33,7 +35,7 @@ python generate_embeddings.py \
 
 **Test set:**
 ```bash
-python generate_embeddings.py \
+uv run generate_embeddings.py \
   --input dataset/test.tsv \
   --model model/fasttext.model \
   --output embedding/test.npy
@@ -42,7 +44,7 @@ python generate_embeddings.py \
 ## Part 3 — Neural topic classification
 
 ```bash
-python train_classifier.py \
+uv run train_classifier.py \
   --train dataset/train.tsv \
   --train_embeddings embedding/train.npy \
   --dev dataset/dev.tsv \
@@ -59,7 +61,7 @@ python train_classifier.py \
 ## Part 4 — Evaluation
 
 ```bash
-python evaluate_classifier.py \
+uv run evaluate_classifier.py \
   --input dataset/test.tsv \
   --embeddings embedding/test.npy \
   --model model/classifier.pth \
