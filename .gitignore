@@ -307,3 +307,6 @@ model/
 
 # embedding files
 embedding/
+
+# report files
+report/
