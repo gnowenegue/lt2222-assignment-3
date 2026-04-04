@@ -127,7 +127,6 @@ def main():
     actual_labels, predicted_labels = evaluate_model(model, test_loader, device)
 
     # print final metrics
-    print("\n--- Topic Classification Evaluation Results ---")
     print(classification_report(actual_labels, predicted_labels, target_names=index_to_label_list))
 
     # create and plot confusion matrix
@@ -151,7 +150,7 @@ def main():
         plt.xlabel('predicted topic')
         plt.ylabel('actual topic')
         plt.savefig(args.confusion_matrix)
-        print(f"Confusion Matrix saved to: {args.confusion_matrix}")
+        print(f"✅ successfully save Confusion Matrix to: {args.confusion_matrix}")
 
 
 if __name__ == "__main__":

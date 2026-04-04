@@ -84,7 +84,7 @@ def main():
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
     np.save(args.output, embedding_matrix)
-    print(f"successfully saved the embedding matrix to {args.output}")
+    print(f"✅ successfully saved the embedding matrix to {args.output}")
 
 
 if __name__ == "__main__":

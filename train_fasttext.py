@@ -121,7 +121,7 @@ def main():
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
     fasttext_model.save(args.output)
-    print(f"successfully saved the FastText model to {args.output}")
+    print(f"✅ successfully saved the FastText model to {args.output}")
 
 
 if __name__ == "__main__":

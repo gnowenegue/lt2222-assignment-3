@@ -68,7 +68,8 @@ def train_model(
         history['train_loss'].append(epoch_loss)
         history['train_acc'].append(epoch_acc)
 
-        print(f"epoch {epoch + 1}/{epochs}: train loss: {epoch_loss:.4f} | train acc: {epoch_acc:.4f}")
+        print(f"epoch {epoch + 1}/{epochs}:")
+        print(f"    train loss: {epoch_loss:.4f} | train acc: {epoch_acc:.4f}")
 
         # run validation if dev loader is provided
         if dev_loader:
@@ -95,7 +96,7 @@ def train_model(
             dev_epoch_acc = dev_correct_predictions / dev_total_samples
             history['dev_loss'].append(dev_epoch_loss)
             history['dev_acc'].append(dev_epoch_acc)
-            print(f"dev loss: {dev_epoch_loss:.4f} | dev acc: {dev_epoch_acc:.4f}")
+            print(f"    dev loss: {dev_epoch_loss:.4f} | dev acc: {dev_epoch_acc:.4f}")
 
     return history
 
@@ -128,7 +129,7 @@ def plot_performance(history, output_path):
 
     plt.tight_layout()
     plt.savefig(output_path)
-    print(f"performance plot saved to {output_path}")
+    print(f"✅ successfully save performance plot to {output_path}")
 
 
 def main():
@@ -266,7 +267,7 @@ def main():
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
     torch.save(model.state_dict(), args.output)
-    print(f"successfully saved the model to {args.output}")
+    print(f"✅ successfully saved the model to {args.output}")
 
     # 5. plot performance if requested
     if args.plot:
