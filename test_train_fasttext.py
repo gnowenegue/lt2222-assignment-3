@@ -1,4 +1,5 @@
 import unittest
+
 from train_fasttext import tokenize
 
 

@@ -136,7 +136,7 @@ def main():
         output_dir = os.path.dirname(args.confusion_matrix)
         if output_dir:
             os.makedirs(output_dir, exist_ok=True)
-        
+
         matrix = confusion_matrix(actual_labels, predicted_labels)
         plt.figure(figsize=(10, 8))
         sns.heatmap(
