@@ -1,14 +1,10 @@
 import argparse
+import os
+
 import pandas as pd
 from gensim.models import FastText
-import os
-import re
 
-
-def tokenize(sentence):
-    # use a regular expression to keep Latin words/numbers whole and split Chinese into characters
-    # this treats each Chinese character as a word while preserving English terms and numbers
-    return re.findall(r"[a-zA-Z0-9]+|[^\s]", str(sentence))
+from utils import tokenize
 
 
 def load_datasets(datasets):
@@ -28,9 +24,9 @@ def train_fasttext_model(
         sentences=sentences,
         vector_size=vector_size,
         window=context_window_size,
-        min_count=minimum_character_count,
+        min_count=minimum_character_count,  # ignores all words with total frequency lower than this
         workers=4,
-        sg=1
+        sg=1  # skip-gram
     )
     return fasttext_model
 
@@ -54,7 +50,7 @@ def main():
         type=str,
         default="dataset/dev.tsv",
         metavar="<path>",
-        help="path to the development tsv file"
+        help="path to the development/validation tsv file"
     )
     arg_parser.add_argument(
         "--test",
@@ -96,37 +92,37 @@ def main():
         help="minimum frequency for a character to be included"
     )
 
-    arguments = arg_parser.parse_args()
+    args = arg_parser.parse_args()
 
     # 1. load the datasets and combine everything
     print("loading the datasets...")
-    combined_dataframes = load_datasets([arguments.train, arguments.dev, arguments.test])
+    combined_dataframes = load_datasets([args.train, args.dev, args.test])
 
-    # print(combined_dataframes)
-
-    # 2. tokenized the sentences
+    # 2. tokenize the sentences
     print("tokenizing the sentences...")
-    tokenized_sentences_list = [
+    tokenized_sentences = [
         tokenize(sentence) for sentence in combined_dataframes['text']
     ]
 
     # 3. train the FastText model
-    print(f"training the FastText model with dimension {arguments.dimension}...")
+    print(
+        f"training the FastText model with dimension {args.dimension}, context window {args.window_size} and minimum count {args.min_count}..."
+    )
     fasttext_model = train_fasttext_model(
-        tokenized_sentences_list,
-        arguments.dimension,
-        arguments.window_size,
-        arguments.min_count,
+        tokenized_sentences,
+        args.dimension,
+        args.window_size,
+        args.min_count,
     )
 
     # 4. save the FastText model
-    print(f"saving the FastText model to {arguments.output}...")
-    os.makedirs(os.path.dirname(arguments.output), exist_ok=True)
-    fasttext_model.save(arguments.output)
-    print(f"successfully saved the FastText model to {arguments.output}")
+    print(f"saving the FastText model to {args.output}...")
+    output_dir = os.path.dirname(args.output)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+    fasttext_model.save(args.output)
+    print(f"successfully saved the FastText model to {args.output}")
 
-
-#
 
 if __name__ == "__main__":
     main()

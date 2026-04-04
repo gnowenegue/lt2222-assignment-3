@@ -1,57 +1,13 @@
 import argparse
-import pandas as pd
-import numpy as np
+import os
+
+import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import Dataset, DataLoader
-import matplotlib.pyplot as plt
-import os
+from torch.utils.data import DataLoader
 
-
-class ClassifierDataset(Dataset):
-    def __init__(self, embeddings_path, dataset_path, label_to_index_mapping):
-        # load the sentence embeddings from the numpy file
-        self.embeddings = np.load(embeddings_path).astype(np.float32)
-
-        # load the dataset to get the corresponding label index
-        dataframe = pd.read_csv(dataset_path, sep='\t')
-        self.labels = [
-            label_to_index_mapping[category] for category in dataframe['category']
-        ]
-
-        # verify that the number of embeddings matches the number of labels
-        if len(self.embeddings) != len(self.labels):
-            raise ValueError(f"mismatch: {len(self.embeddings)} embeddings VS {len(self.labels)} labels")
-
-    def __len__(self):
-        return len(self.labels)
-
-    def __getitem__(self, index):
-        return self.embeddings[index], self.labels[index]
-
-
-class Classifier(nn.Module):
-    def __init__(self, input_layer_size, hidden_layer_size, output_layer_size):
-        super(Classifier, self).__init__()
-
-        # define a neural network with one hidden layer and relu non-linearity
-        self.model = nn.Sequential(
-            nn.Linear(input_layer_size, hidden_layer_size),
-            nn.ReLU(),
-            nn.Linear(hidden_layer_size, output_layer_size)
-        )
-
-    def forward(self, x):
-        return self.model(x)
-
-
-def load_labels(labels_path):
-    with open(labels_path, 'r', encoding='utf-8') as file:
-        labels = [line.strip() for line in file if line.strip()]
-
-    # create a mapping from label to index
-    return {label: i for i, label in enumerate(labels)}
+from utils import Classifier, ClassifierDataset, load_labels
 
 
 def train_model(
@@ -201,13 +157,13 @@ def main():
         type=str,
         default="dataset/dev.tsv",
         metavar="<path>",
-        help="optional: path to the development tsv file (example: dataset/dev.tsv)"
+        help="path to the development tsv file (example: dataset/dev.tsv)"
     )
     arg_parser.add_argument(
         "--dev_embeddings",
         type=str,
         metavar="<path>",
-        help="optional: path to the development embeddings file (example: embedding/dev.npy)"
+        help="path to the development embeddings file (example: embedding/dev.npy)"
     )
     arg_parser.add_argument(
         "-l",
@@ -266,27 +222,27 @@ def main():
         "--plot",
         type=str,
         metavar="<path>",
-        help="optional: where to save the performance plot (example: evaluation_plot.png)"
+        help="where to save the performance plot (example: evaluation_plot.png)"
     )
 
-    arguments = arg_parser.parse_args()
+    args = arg_parser.parse_args()
 
     # 1. load label mapping and dataset
-    label_to_index_mapping = load_labels(arguments.labels)
+    label_to_index_mapping = load_labels(args.labels)
     train_dataset = ClassifierDataset(
-        arguments.train_embeddings, arguments.train_data, label_to_index_mapping
+        args.train_embeddings, args.train, label_to_index_mapping
     )
     train_loader = DataLoader(
-        train_dataset, batch_size=arguments.batch_size, shuffle=True
+        train_dataset, batch_size=args.batch_size, shuffle=True
     )
 
     dev_loader = None
-    if arguments.dev_data and arguments.dev_embeddings:
+    if args.dev and args.dev_embeddings:
         dev_dataset = ClassifierDataset(
-            arguments.dev_embeddings, arguments.dev_data, label_to_index_mapping
+            args.dev_embeddings, args.dev, label_to_index_mapping
         )
         dev_loader = DataLoader(
-            dev_dataset, batch_size=arguments.batch_size, shuffle=False
+            dev_dataset, batch_size=args.batch_size, shuffle=False
         )
 
     # 2. initialize the model, loss function, and optimizer
@@ -294,25 +250,32 @@ def main():
     output_layer_size = len(label_to_index_mapping)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    model = Classifier(input_layer_size, arguments.hidden_size, output_layer_size).to(device)
+    model = Classifier(input_layer_size, args.hidden_size, output_layer_size).to(device)
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=arguments.learning_rate)
+    optimizer = optim.Adam(model.parameters(), lr=args.learning_rate)
 
     # 3. train the model
-    print(f"starting training for {arguments.epochs} epochs...")
+    print(f"starting training for {args.epochs} epochs...")
     history = train_model(
-        model, train_loader, dev_loader, criterion, optimizer, arguments.epochs, device
+        model, train_loader, dev_loader, criterion, optimizer, args.epochs, device
     )
 
     # 4. save the model
-    print(f"saving the model to {arguments.output}...")
-    os.makedirs(os.path.dirname(arguments.output), exist_ok=True)
-    torch.save(model.state_dict(), arguments.output)
-    print(f"successfully saved the model to {arguments.output}")
+    print(f"saving the model to {args.output}...")
+    output_dir = os.path.dirname(args.output)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+    torch.save(model.state_dict(), args.output)
+    print(f"successfully saved the model to {args.output}")
 
     # 5. plot performance if requested
-    if arguments.plot:
-        plot_performance(history, arguments.plot)
+    if args.plot:
+        # create the output directory if it doesn't exist
+        plot_dir = os.path.dirname(args.plot)
+        if plot_dir:
+            os.makedirs(plot_dir, exist_ok=True)
+
+        plot_performance(history, args.plot)
 
 
 if __name__ == "__main__":
