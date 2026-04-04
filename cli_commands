@@ -33,9 +33,9 @@ python generate_embeddings.py \
 # 5. Train the neural topic classifier
 # we save the accuracy and loss plot in the 'report' folder
 python train_classifier.py \
-  --train_data dataset/train.tsv \
+  --train dataset/train.tsv \
   --train_embeddings embedding/train.npy \
-  --dev_data dataset/dev.tsv \
+  --dev dataset/dev.tsv \
   --dev_embeddings embedding/dev.npy \
   --labels dataset/labels.txt \
   --epochs 100 \

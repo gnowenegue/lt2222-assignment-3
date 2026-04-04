@@ -139,7 +139,7 @@ def main():
 
     # dataset arguments
     arg_parser.add_argument(
-        "--train_data",
+        "--train",
         type=str,
         default="dataset/train.tsv",
         metavar="<path>",
@@ -153,7 +153,7 @@ def main():
         help="path to the training embeddings file"
     )
     arg_parser.add_argument(
-        "--dev_data",
+        "--dev",
         type=str,
         default="dataset/dev.tsv",
         metavar="<path>",
