@@ -151,7 +151,7 @@ def main():
         plt.xlabel('predicted topic')
         plt.ylabel('actual topic')
         plt.savefig(args.confusion_matrix)
-        print(f"Confusion matrix saved to: {args.confusion_matrix}")
+        print(f"Confusion Matrix saved to: {args.confusion_matrix}")
 
 
 if __name__ == "__main__":
