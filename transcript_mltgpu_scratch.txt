@@ -1,11 +1,11 @@
-===== Part 2a — Sentence embeddings (Step 1: Training FastText) =====
+===== Part 2a — Train FastText model =====
 loading the datasets...
 tokenizing the sentences...
 training the FastText model with dimension 100, context window 5 and minimum count 1...
 saving the FastText model to model/fasttext.model...
 ✅ successfully saved the FastText model to model/fasttext.model
 
-===== Part 2b — Sentence embeddings (Step 2: Generating Vectors) =====
+===== Part 2b — Generate embeddings =====
 loading the FastText model from model/fasttext.model...
 generating the embeddings from dataset/train.tsv...
 generating embeddings for 701 sentences...
@@ -25,305 +25,305 @@ saving the embedding matrix to embedding/test.npy...
 ===== Part 3 — Neural topic classification =====
 starting training for 100 epochs...
 epoch 1/100:
-    train loss: 1.9172 | train acc: 0.2140
-    dev loss: 1.8919 | dev acc: 0.2525
+    train loss: 1.9473 | train acc: 0.1683
+    dev loss: 1.9189 | dev acc: 0.2525
 epoch 2/100:
-    train loss: 1.8818 | train acc: 0.2525
-    dev loss: 1.8608 | dev acc: 0.2525
+    train loss: 1.9006 | train acc: 0.2511
+    dev loss: 1.8713 | dev acc: 0.2525
 epoch 3/100:
-    train loss: 1.8609 | train acc: 0.2511
-    dev loss: 1.8474 | dev acc: 0.2525
+    train loss: 1.8643 | train acc: 0.2511
+    dev loss: 1.8452 | dev acc: 0.2525
 epoch 4/100:
-    train loss: 1.8489 | train acc: 0.2511
-    dev loss: 1.8360 | dev acc: 0.2525
+    train loss: 1.8471 | train acc: 0.2511
+    dev loss: 1.8324 | dev acc: 0.2525
 epoch 5/100:
-    train loss: 1.8379 | train acc: 0.2525
-    dev loss: 1.8224 | dev acc: 0.2626
+    train loss: 1.8352 | train acc: 0.2511
+    dev loss: 1.8186 | dev acc: 0.2525
 epoch 6/100:
-    train loss: 1.8250 | train acc: 0.2539
-    dev loss: 1.8059 | dev acc: 0.2727
+    train loss: 1.8224 | train acc: 0.2553
+    dev loss: 1.8055 | dev acc: 0.2626
 epoch 7/100:
-    train loss: 1.8098 | train acc: 0.2710
-    dev loss: 1.7878 | dev acc: 0.3131
+    train loss: 1.8109 | train acc: 0.2568
+    dev loss: 1.7904 | dev acc: 0.2727
 epoch 8/100:
-    train loss: 1.7937 | train acc: 0.2810
-    dev loss: 1.7687 | dev acc: 0.3131
+    train loss: 1.7967 | train acc: 0.2710
+    dev loss: 1.7757 | dev acc: 0.3131
 epoch 9/100:
-    train loss: 1.7769 | train acc: 0.2867
-    dev loss: 1.7496 | dev acc: 0.3232
+    train loss: 1.7851 | train acc: 0.2782
+    dev loss: 1.7612 | dev acc: 0.3131
 epoch 10/100:
-    train loss: 1.7611 | train acc: 0.2953
-    dev loss: 1.7315 | dev acc: 0.3030
+    train loss: 1.7707 | train acc: 0.2839
+    dev loss: 1.7460 | dev acc: 0.3131
 epoch 11/100:
-    train loss: 1.7460 | train acc: 0.2996
-    dev loss: 1.7161 | dev acc: 0.3030
+    train loss: 1.7577 | train acc: 0.2924
+    dev loss: 1.7323 | dev acc: 0.3232
 epoch 12/100:
-    train loss: 1.7334 | train acc: 0.2996
-    dev loss: 1.7027 | dev acc: 0.3131
+    train loss: 1.7465 | train acc: 0.2924
+    dev loss: 1.7187 | dev acc: 0.3232
 epoch 13/100:
-    train loss: 1.7235 | train acc: 0.3010
-    dev loss: 1.6909 | dev acc: 0.3131
+    train loss: 1.7354 | train acc: 0.2910
+    dev loss: 1.7059 | dev acc: 0.3030
 epoch 14/100:
-    train loss: 1.7140 | train acc: 0.3195
-    dev loss: 1.6799 | dev acc: 0.3232
+    train loss: 1.7287 | train acc: 0.3039
+    dev loss: 1.6970 | dev acc: 0.3131
 epoch 15/100:
-    train loss: 1.7058 | train acc: 0.3153
-    dev loss: 1.6712 | dev acc: 0.3232
+    train loss: 1.7162 | train acc: 0.3010
+    dev loss: 1.6852 | dev acc: 0.3131
 epoch 16/100:
-    train loss: 1.6998 | train acc: 0.3238
-    dev loss: 1.6644 | dev acc: 0.3333
+    train loss: 1.7091 | train acc: 0.3195
+    dev loss: 1.6763 | dev acc: 0.3535
 epoch 17/100:
-    train loss: 1.6958 | train acc: 0.3238
-    dev loss: 1.6566 | dev acc: 0.3434
+    train loss: 1.7027 | train acc: 0.3195
+    dev loss: 1.6682 | dev acc: 0.3434
 epoch 18/100:
-    train loss: 1.6891 | train acc: 0.3167
-    dev loss: 1.6502 | dev acc: 0.3535
+    train loss: 1.6944 | train acc: 0.3138
+    dev loss: 1.6597 | dev acc: 0.3535
 epoch 19/100:
-    train loss: 1.6838 | train acc: 0.3324
-    dev loss: 1.6444 | dev acc: 0.4040
+    train loss: 1.6878 | train acc: 0.3295
+    dev loss: 1.6524 | dev acc: 0.3535
 epoch 20/100:
-    train loss: 1.6778 | train acc: 0.3238
-    dev loss: 1.6391 | dev acc: 0.3535
+    train loss: 1.6811 | train acc: 0.3566
+    dev loss: 1.6442 | dev acc: 0.3838
 epoch 21/100:
-    train loss: 1.6713 | train acc: 0.3281
-    dev loss: 1.6332 | dev acc: 0.4040
+    train loss: 1.6746 | train acc: 0.3538
+    dev loss: 1.6377 | dev acc: 0.3535
 epoch 22/100:
-    train loss: 1.6676 | train acc: 0.3566
-    dev loss: 1.6277 | dev acc: 0.4040
+    train loss: 1.6690 | train acc: 0.3424
+    dev loss: 1.6299 | dev acc: 0.3939
 epoch 23/100:
-    train loss: 1.6630 | train acc: 0.3452
-    dev loss: 1.6218 | dev acc: 0.3939
+    train loss: 1.6653 | train acc: 0.3538
+    dev loss: 1.6236 | dev acc: 0.4141
 epoch 24/100:
-    train loss: 1.6599 | train acc: 0.3609
-    dev loss: 1.6165 | dev acc: 0.4040
+    train loss: 1.6579 | train acc: 0.3994
+    dev loss: 1.6163 | dev acc: 0.4242
 epoch 25/100:
-    train loss: 1.6536 | train acc: 0.3581
-    dev loss: 1.6109 | dev acc: 0.3939
+    train loss: 1.6507 | train acc: 0.3695
+    dev loss: 1.6107 | dev acc: 0.4141
 epoch 26/100:
-    train loss: 1.6482 | train acc: 0.3766
-    dev loss: 1.6049 | dev acc: 0.4343
+    train loss: 1.6470 | train acc: 0.3980
+    dev loss: 1.6037 | dev acc: 0.4545
 epoch 27/100:
-    train loss: 1.6415 | train acc: 0.3880
-    dev loss: 1.5990 | dev acc: 0.4242
+    train loss: 1.6408 | train acc: 0.3837
+    dev loss: 1.5963 | dev acc: 0.4343
 epoch 28/100:
-    train loss: 1.6397 | train acc: 0.3538
-    dev loss: 1.5925 | dev acc: 0.4141
+    train loss: 1.6332 | train acc: 0.4123
+    dev loss: 1.5902 | dev acc: 0.4646
 epoch 29/100:
-    train loss: 1.6352 | train acc: 0.3894
-    dev loss: 1.5864 | dev acc: 0.4343
+    train loss: 1.6277 | train acc: 0.3823
+    dev loss: 1.5854 | dev acc: 0.4242
 epoch 30/100:
-    train loss: 1.6273 | train acc: 0.3880
-    dev loss: 1.5808 | dev acc: 0.4242
+    train loss: 1.6223 | train acc: 0.3994
+    dev loss: 1.5783 | dev acc: 0.4747
 epoch 31/100:
-    train loss: 1.6194 | train acc: 0.3980
-    dev loss: 1.5746 | dev acc: 0.4545
+    train loss: 1.6153 | train acc: 0.4180
+    dev loss: 1.5705 | dev acc: 0.4848
 epoch 32/100:
-    train loss: 1.6162 | train acc: 0.3994
-    dev loss: 1.5680 | dev acc: 0.4242
+    train loss: 1.6094 | train acc: 0.4223
+    dev loss: 1.5641 | dev acc: 0.4848
 epoch 33/100:
-    train loss: 1.6080 | train acc: 0.3966
-    dev loss: 1.5618 | dev acc: 0.4646
+    train loss: 1.6029 | train acc: 0.4280
+    dev loss: 1.5577 | dev acc: 0.4848
 epoch 34/100:
-    train loss: 1.6027 | train acc: 0.4051
-    dev loss: 1.5552 | dev acc: 0.4747
+    train loss: 1.5973 | train acc: 0.4280
+    dev loss: 1.5519 | dev acc: 0.4949
 epoch 35/100:
-    train loss: 1.5962 | train acc: 0.4194
-    dev loss: 1.5487 | dev acc: 0.4646
+    train loss: 1.5926 | train acc: 0.4265
+    dev loss: 1.5445 | dev acc: 0.5051
 epoch 36/100:
-    train loss: 1.5919 | train acc: 0.4223
-    dev loss: 1.5422 | dev acc: 0.4646
+    train loss: 1.5867 | train acc: 0.4322
+    dev loss: 1.5391 | dev acc: 0.4848
 epoch 37/100:
-    train loss: 1.5864 | train acc: 0.4151
-    dev loss: 1.5364 | dev acc: 0.4848
+    train loss: 1.5808 | train acc: 0.4265
+    dev loss: 1.5327 | dev acc: 0.4949
 epoch 38/100:
-    train loss: 1.5788 | train acc: 0.4194
-    dev loss: 1.5294 | dev acc: 0.4848
+    train loss: 1.5754 | train acc: 0.4451
+    dev loss: 1.5268 | dev acc: 0.4949
 epoch 39/100:
-    train loss: 1.5722 | train acc: 0.4437
-    dev loss: 1.5228 | dev acc: 0.4949
+    train loss: 1.5697 | train acc: 0.4379
+    dev loss: 1.5220 | dev acc: 0.4949
 epoch 40/100:
-    train loss: 1.5672 | train acc: 0.4422
-    dev loss: 1.5164 | dev acc: 0.5051
+    train loss: 1.5625 | train acc: 0.4394
+    dev loss: 1.5161 | dev acc: 0.5253
 epoch 41/100:
-    train loss: 1.5612 | train acc: 0.4408
-    dev loss: 1.5104 | dev acc: 0.4848
+    train loss: 1.5587 | train acc: 0.4494
+    dev loss: 1.5100 | dev acc: 0.5051
 epoch 42/100:
-    train loss: 1.5566 | train acc: 0.4422
-    dev loss: 1.5051 | dev acc: 0.4949
+    train loss: 1.5540 | train acc: 0.4494
+    dev loss: 1.5034 | dev acc: 0.5051
 epoch 43/100:
-    train loss: 1.5528 | train acc: 0.4551
-    dev loss: 1.4977 | dev acc: 0.5051
+    train loss: 1.5465 | train acc: 0.4451
+    dev loss: 1.4987 | dev acc: 0.5152
 epoch 44/100:
-    train loss: 1.5498 | train acc: 0.4551
-    dev loss: 1.4930 | dev acc: 0.5152
+    train loss: 1.5411 | train acc: 0.4551
+    dev loss: 1.4935 | dev acc: 0.5253
 epoch 45/100:
-    train loss: 1.5377 | train acc: 0.4608
-    dev loss: 1.4855 | dev acc: 0.5051
+    train loss: 1.5371 | train acc: 0.4437
+    dev loss: 1.4877 | dev acc: 0.5253
 epoch 46/100:
-    train loss: 1.5336 | train acc: 0.4622
-    dev loss: 1.4799 | dev acc: 0.5253
+    train loss: 1.5323 | train acc: 0.4522
+    dev loss: 1.4825 | dev acc: 0.5253
 epoch 47/100:
-    train loss: 1.5294 | train acc: 0.4708
-    dev loss: 1.4749 | dev acc: 0.5253
+    train loss: 1.5273 | train acc: 0.4622
+    dev loss: 1.4776 | dev acc: 0.5253
 epoch 48/100:
-    train loss: 1.5217 | train acc: 0.4708
-    dev loss: 1.4682 | dev acc: 0.5253
+    train loss: 1.5214 | train acc: 0.4565
+    dev loss: 1.4728 | dev acc: 0.5152
 epoch 49/100:
-    train loss: 1.5170 | train acc: 0.4693
-    dev loss: 1.4622 | dev acc: 0.5253
+    train loss: 1.5189 | train acc: 0.4522
+    dev loss: 1.4680 | dev acc: 0.5253
 epoch 50/100:
-    train loss: 1.5131 | train acc: 0.4650
-    dev loss: 1.4587 | dev acc: 0.5354
+    train loss: 1.5172 | train acc: 0.4522
+    dev loss: 1.4638 | dev acc: 0.5253
 epoch 51/100:
-    train loss: 1.5079 | train acc: 0.4650
-    dev loss: 1.4538 | dev acc: 0.5152
+    train loss: 1.5124 | train acc: 0.4536
+    dev loss: 1.4614 | dev acc: 0.5152
 epoch 52/100:
-    train loss: 1.5042 | train acc: 0.4722
-    dev loss: 1.4472 | dev acc: 0.5455
+    train loss: 1.5039 | train acc: 0.4565
+    dev loss: 1.4562 | dev acc: 0.5152
 epoch 53/100:
-    train loss: 1.4963 | train acc: 0.4736
-    dev loss: 1.4420 | dev acc: 0.5253
+    train loss: 1.5009 | train acc: 0.4551
+    dev loss: 1.4509 | dev acc: 0.5253
 epoch 54/100:
-    train loss: 1.4913 | train acc: 0.4665
-    dev loss: 1.4379 | dev acc: 0.5152
+    train loss: 1.4987 | train acc: 0.4579
+    dev loss: 1.4470 | dev acc: 0.5354
 epoch 55/100:
-    train loss: 1.4880 | train acc: 0.4708
-    dev loss: 1.4322 | dev acc: 0.5354
+    train loss: 1.4939 | train acc: 0.4650
+    dev loss: 1.4433 | dev acc: 0.5253
 epoch 56/100:
-    train loss: 1.4846 | train acc: 0.4722
-    dev loss: 1.4280 | dev acc: 0.5253
+    train loss: 1.4881 | train acc: 0.4593
+    dev loss: 1.4388 | dev acc: 0.5253
 epoch 57/100:
-    train loss: 1.4787 | train acc: 0.4708
-    dev loss: 1.4223 | dev acc: 0.5253
+    train loss: 1.4847 | train acc: 0.4593
+    dev loss: 1.4348 | dev acc: 0.5253
 epoch 58/100:
-    train loss: 1.4786 | train acc: 0.4736
-    dev loss: 1.4203 | dev acc: 0.5253
+    train loss: 1.4825 | train acc: 0.4679
+    dev loss: 1.4335 | dev acc: 0.5253
 epoch 59/100:
-    train loss: 1.4699 | train acc: 0.4722
-    dev loss: 1.4131 | dev acc: 0.5354
+    train loss: 1.4779 | train acc: 0.4636
+    dev loss: 1.4280 | dev acc: 0.5253
 epoch 60/100:
-    train loss: 1.4659 | train acc: 0.4708
-    dev loss: 1.4100 | dev acc: 0.5253
+    train loss: 1.4745 | train acc: 0.4551
+    dev loss: 1.4240 | dev acc: 0.5354
 epoch 61/100:
-    train loss: 1.4611 | train acc: 0.4708
-    dev loss: 1.4048 | dev acc: 0.5354
+    train loss: 1.4706 | train acc: 0.4636
+    dev loss: 1.4201 | dev acc: 0.5253
 epoch 62/100:
-    train loss: 1.4565 | train acc: 0.4736
-    dev loss: 1.4011 | dev acc: 0.5253
+    train loss: 1.4697 | train acc: 0.4593
+    dev loss: 1.4174 | dev acc: 0.5253
 epoch 63/100:
-    train loss: 1.4532 | train acc: 0.4765
-    dev loss: 1.3968 | dev acc: 0.5354
+    train loss: 1.4647 | train acc: 0.4679
+    dev loss: 1.4164 | dev acc: 0.5354
 epoch 64/100:
-    train loss: 1.4489 | train acc: 0.4779
-    dev loss: 1.3949 | dev acc: 0.5354
+    train loss: 1.4603 | train acc: 0.4693
+    dev loss: 1.4107 | dev acc: 0.5253
 epoch 65/100:
-    train loss: 1.4475 | train acc: 0.4765
-    dev loss: 1.3880 | dev acc: 0.5455
+    train loss: 1.4576 | train acc: 0.4679
+    dev loss: 1.4064 | dev acc: 0.5253
 epoch 66/100:
-    train loss: 1.4427 | train acc: 0.4864
-    dev loss: 1.3853 | dev acc: 0.5253
+    train loss: 1.4552 | train acc: 0.4708
+    dev loss: 1.4045 | dev acc: 0.5253
 epoch 67/100:
-    train loss: 1.4376 | train acc: 0.4765
-    dev loss: 1.3800 | dev acc: 0.5455
+    train loss: 1.4519 | train acc: 0.4708
+    dev loss: 1.4014 | dev acc: 0.5253
 epoch 68/100:
-    train loss: 1.4380 | train acc: 0.4779
-    dev loss: 1.3791 | dev acc: 0.5354
+    train loss: 1.4494 | train acc: 0.4693
+    dev loss: 1.3974 | dev acc: 0.5253
 epoch 69/100:
-    train loss: 1.4327 | train acc: 0.4807
-    dev loss: 1.3754 | dev acc: 0.5253
+    train loss: 1.4467 | train acc: 0.4679
+    dev loss: 1.3966 | dev acc: 0.5354
 epoch 70/100:
-    train loss: 1.4269 | train acc: 0.4850
-    dev loss: 1.3691 | dev acc: 0.5455
+    train loss: 1.4434 | train acc: 0.4722
+    dev loss: 1.3913 | dev acc: 0.5354
 epoch 71/100:
-    train loss: 1.4251 | train acc: 0.4822
-    dev loss: 1.3706 | dev acc: 0.5556
+    train loss: 1.4393 | train acc: 0.4750
+    dev loss: 1.3884 | dev acc: 0.5354
 epoch 72/100:
-    train loss: 1.4182 | train acc: 0.4793
-    dev loss: 1.3619 | dev acc: 0.5556
+    train loss: 1.4361 | train acc: 0.4736
+    dev loss: 1.3857 | dev acc: 0.5253
 epoch 73/100:
-    train loss: 1.4199 | train acc: 0.4850
-    dev loss: 1.3614 | dev acc: 0.5556
+    train loss: 1.4339 | train acc: 0.4722
+    dev loss: 1.3847 | dev acc: 0.5354
 epoch 74/100:
-    train loss: 1.4131 | train acc: 0.4822
-    dev loss: 1.3576 | dev acc: 0.5455
+    train loss: 1.4332 | train acc: 0.4750
+    dev loss: 1.3795 | dev acc: 0.5253
 epoch 75/100:
-    train loss: 1.4090 | train acc: 0.4807
-    dev loss: 1.3507 | dev acc: 0.5758
+    train loss: 1.4294 | train acc: 0.4793
+    dev loss: 1.3776 | dev acc: 0.5354
 epoch 76/100:
-    train loss: 1.4046 | train acc: 0.4879
-    dev loss: 1.3525 | dev acc: 0.5455
+    train loss: 1.4263 | train acc: 0.4793
+    dev loss: 1.3742 | dev acc: 0.5253
 epoch 77/100:
-    train loss: 1.4041 | train acc: 0.4879
-    dev loss: 1.3453 | dev acc: 0.5556
+    train loss: 1.4224 | train acc: 0.4779
+    dev loss: 1.3724 | dev acc: 0.5354
 epoch 78/100:
-    train loss: 1.3988 | train acc: 0.4879
-    dev loss: 1.3438 | dev acc: 0.5455
+    train loss: 1.4215 | train acc: 0.4750
+    dev loss: 1.3684 | dev acc: 0.5253
 epoch 79/100:
-    train loss: 1.3996 | train acc: 0.4893
-    dev loss: 1.3450 | dev acc: 0.5455
+    train loss: 1.4163 | train acc: 0.4836
+    dev loss: 1.3666 | dev acc: 0.5354
 epoch 80/100:
-    train loss: 1.3964 | train acc: 0.4907
-    dev loss: 1.3347 | dev acc: 0.5556
+    train loss: 1.4165 | train acc: 0.4822
+    dev loss: 1.3653 | dev acc: 0.5354
 epoch 81/100:
-    train loss: 1.3913 | train acc: 0.4922
-    dev loss: 1.3334 | dev acc: 0.5657
+    train loss: 1.4162 | train acc: 0.4922
+    dev loss: 1.3609 | dev acc: 0.5354
 epoch 82/100:
-    train loss: 1.3860 | train acc: 0.4979
-    dev loss: 1.3292 | dev acc: 0.5556
+    train loss: 1.4111 | train acc: 0.4836
+    dev loss: 1.3592 | dev acc: 0.5354
 epoch 83/100:
-    train loss: 1.3860 | train acc: 0.4964
-    dev loss: 1.3265 | dev acc: 0.5657
+    train loss: 1.4088 | train acc: 0.4879
+    dev loss: 1.3561 | dev acc: 0.5455
 epoch 84/100:
-    train loss: 1.3838 | train acc: 0.4922
-    dev loss: 1.3240 | dev acc: 0.5556
+    train loss: 1.4038 | train acc: 0.4836
+    dev loss: 1.3536 | dev acc: 0.5556
 epoch 85/100:
-    train loss: 1.3805 | train acc: 0.4922
-    dev loss: 1.3204 | dev acc: 0.5556
+    train loss: 1.4008 | train acc: 0.4893
+    dev loss: 1.3525 | dev acc: 0.5354
 epoch 86/100:
-    train loss: 1.3749 | train acc: 0.5021
-    dev loss: 1.3176 | dev acc: 0.5657
+    train loss: 1.3979 | train acc: 0.4893
+    dev loss: 1.3496 | dev acc: 0.5556
 epoch 87/100:
-    train loss: 1.3707 | train acc: 0.4993
-    dev loss: 1.3159 | dev acc: 0.5556
+    train loss: 1.3970 | train acc: 0.4936
+    dev loss: 1.3464 | dev acc: 0.5455
 epoch 88/100:
-    train loss: 1.3715 | train acc: 0.4950
-    dev loss: 1.3119 | dev acc: 0.5556
+    train loss: 1.3931 | train acc: 0.4864
+    dev loss: 1.3448 | dev acc: 0.5556
 epoch 89/100:
-    train loss: 1.3663 | train acc: 0.4936
-    dev loss: 1.3116 | dev acc: 0.5455
+    train loss: 1.3945 | train acc: 0.4893
+    dev loss: 1.3430 | dev acc: 0.5556
 epoch 90/100:
-    train loss: 1.3650 | train acc: 0.5050
-    dev loss: 1.3082 | dev acc: 0.5354
+    train loss: 1.3889 | train acc: 0.4922
+    dev loss: 1.3413 | dev acc: 0.5455
 epoch 91/100:
-    train loss: 1.3603 | train acc: 0.5050
-    dev loss: 1.3039 | dev acc: 0.5657
+    train loss: 1.3848 | train acc: 0.4936
+    dev loss: 1.3366 | dev acc: 0.5556
 epoch 92/100:
-    train loss: 1.3562 | train acc: 0.5050
-    dev loss: 1.3024 | dev acc: 0.5657
+    train loss: 1.3858 | train acc: 0.4907
+    dev loss: 1.3356 | dev acc: 0.5556
 epoch 93/100:
-    train loss: 1.3536 | train acc: 0.5021
-    dev loss: 1.2989 | dev acc: 0.5556
+    train loss: 1.3852 | train acc: 0.4893
+    dev loss: 1.3321 | dev acc: 0.5556
 epoch 94/100:
-    train loss: 1.3514 | train acc: 0.5078
-    dev loss: 1.2973 | dev acc: 0.5455
+    train loss: 1.3784 | train acc: 0.4964
+    dev loss: 1.3314 | dev acc: 0.5556
 epoch 95/100:
-    train loss: 1.3498 | train acc: 0.5107
-    dev loss: 1.2937 | dev acc: 0.5657
+    train loss: 1.3752 | train acc: 0.4979
+    dev loss: 1.3282 | dev acc: 0.5657
 epoch 96/100:
-    train loss: 1.3476 | train acc: 0.4993
-    dev loss: 1.2924 | dev acc: 0.5758
+    train loss: 1.3746 | train acc: 0.4979
+    dev loss: 1.3265 | dev acc: 0.5556
 epoch 97/100:
-    train loss: 1.3439 | train acc: 0.5107
-    dev loss: 1.2895 | dev acc: 0.5859
+    train loss: 1.3733 | train acc: 0.4950
+    dev loss: 1.3245 | dev acc: 0.5556
 epoch 98/100:
-    train loss: 1.3461 | train acc: 0.4993
-    dev loss: 1.2868 | dev acc: 0.5758
+    train loss: 1.3685 | train acc: 0.4922
+    dev loss: 1.3224 | dev acc: 0.5556
 epoch 99/100:
-    train loss: 1.3395 | train acc: 0.5007
-    dev loss: 1.2850 | dev acc: 0.5960
+    train loss: 1.3681 | train acc: 0.4936
+    dev loss: 1.3191 | dev acc: 0.5556
 epoch 100/100:
-    train loss: 1.3381 | train acc: 0.5164
-    dev loss: 1.2847 | dev acc: 0.5556
+    train loss: 1.3649 | train acc: 0.4893
+    dev loss: 1.3195 | dev acc: 0.5556
 saving the model to model/classifier.pth...
 ✅ successfully saved the model to model/classifier.pth
 ✅ successfully save performance plot to report/evaluation_plot.png
@@ -331,17 +331,17 @@ saving the model to model/classifier.pth...
 ===== Part 4 — Evaluation =====
                     precision    recall  f1-score   support
 
-science/technology       0.51      0.86      0.64        51
-            travel       0.60      0.82      0.69        40
-          politics       0.45      0.43      0.44        30
-            sports       0.50      0.60      0.55        25
+science/technology       0.52      0.86      0.65        51
+            travel       0.58      0.80      0.67        40
+          politics       0.47      0.57      0.52        30
+            sports       0.56      0.56      0.56        25
             health       0.00      0.00      0.00        22
      entertainment       0.00      0.00      0.00        19
          geography       1.00      0.18      0.30        17
 
-          accuracy                           0.53       204
-         macro avg       0.44      0.41      0.37       204
-      weighted avg       0.45      0.53      0.45       204
+          accuracy                           0.54       204
+         macro avg       0.45      0.42      0.39       204
+      weighted avg       0.46      0.54      0.46       204
 
 ✅ successfully save Confusion Matrix to: report/confusion_matrix.png
 
