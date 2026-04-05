@@ -42,7 +42,7 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 
-    # configuration for the input dataset and the pre-trained model
+    # input arguments
     arg_parser.add_argument(
         "-i",
         "--input",
@@ -59,6 +59,8 @@ def main():
         metavar="<path>",
         help="path to the trained FastText model"
     )
+
+    # output arguments
     arg_parser.add_argument(
         "-o",
         "--output",

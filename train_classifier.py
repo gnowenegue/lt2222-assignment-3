@@ -228,8 +228,13 @@ def main():
 
     args = arg_parser.parse_args()
 
+    # set the processing device
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     # 1. load label mapping and dataset
     label_to_index_mapping = load_labels(args.labels)
+
+    # 2. load the datasets and data loaders
     train_dataset = ClassifierDataset(
         args.train_embeddings, args.train, label_to_index_mapping
     )
@@ -246,30 +251,31 @@ def main():
             dev_dataset, batch_size=args.batch_size, shuffle=False
         )
 
-    # 2. initialize the model, loss function, and optimizer
     input_layer_size = train_dataset.embeddings.shape[1]
     output_layer_size = len(label_to_index_mapping)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    # 3. initialize the model, loss function, and optimizer
     model = Classifier(input_layer_size, args.hidden_size, output_layer_size).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=args.learning_rate)
 
-    # 3. train the model
+    # 4. train the model
     print(f"starting training for {args.epochs} epochs...")
     history = train_model(
         model, train_loader, dev_loader, criterion, optimizer, args.epochs, device
     )
 
-    # 4. save the model
+    # 5. save the model
     print(f"saving the model to {args.output}...")
+    # create the output directory if it doesn't exist
     output_dir = os.path.dirname(args.output)
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
+
     torch.save(model.state_dict(), args.output)
     print(f"✅ successfully saved the model to {args.output}")
 
-    # 5. plot performance if requested
+    # 6. plot performance if requested
     if args.plot:
         # create the output directory if it doesn't exist
         plot_dir = os.path.dirname(args.plot)

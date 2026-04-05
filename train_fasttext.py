@@ -37,7 +37,7 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 
-    # arguments for data paths and output
+    # data paths arguments
     arg_parser.add_argument(
         "--train",
         type=str,
@@ -59,6 +59,8 @@ def main():
         metavar="<path>",
         help="path to the testing tsv file"
     )
+
+    # model fine-tuning arguments
     arg_parser.add_argument(
         "-d",
         "--dimension",
@@ -67,16 +69,6 @@ def main():
         metavar="<number>",
         help="number of dimensions for the embeddings"
     )
-    arg_parser.add_argument(
-        "-o",
-        "--output",
-        type=str,
-        default="model/fasttext.model",
-        metavar="<path>",
-        help="where to save the trained model file"
-    )
-
-    # parameters for model fine-tuning
     arg_parser.add_argument(
         "--window_size",
         type=int,
@@ -92,6 +84,15 @@ def main():
         help="minimum frequency for a character to be included"
     )
 
+    # output arguments
+    arg_parser.add_argument(
+        "-o",
+        "--output",
+        type=str,
+        default="model/fasttext.model",
+        metavar="<path>",
+        help="where to save the trained model file"
+    )
     args = arg_parser.parse_args()
 
     # 1. load the datasets and combine everything

@@ -4,14 +4,14 @@ This project implements a multiclass topic classification pipeline for Simplifie
 
 ## Installation & Setup
 
-1. **Clone the repository:**
+1. Clone the repository:
 
    ```bash
    git clone <repository_url>
    cd <repository_name>
    ```
 
-2. **Install uv:**
+2. Install uv:
    This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
    ```bash
@@ -20,7 +20,7 @@ This project implements a multiclass topic classification pipeline for Simplifie
 
    *Or visit [the official installation page](https://docs.astral.sh/uv/getting-started/installation/) for other methods.*
 
-3. **Install dependencies:**
+3. Install dependencies:
 
    ```bash
    uv sync

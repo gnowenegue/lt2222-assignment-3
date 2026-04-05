@@ -14,7 +14,7 @@ def evaluate_model(model, data_loader, device):
     model.eval()
 
     all_predictions = []
-    all_actual_labels = []
+    all_labels = []
 
     # disable gradient calculations
     with torch.no_grad():
@@ -29,9 +29,9 @@ def evaluate_model(model, data_loader, device):
 
             # store the results for evaluation
             all_predictions.extend(predicted.cpu().numpy())
-            all_actual_labels.extend(labels.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
 
-    return all_actual_labels, all_predictions
+    return all_labels, all_predictions
 
 
 def main():
@@ -106,30 +106,34 @@ def main():
     # set the processing device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    # load label mapping
+    # 1. load label mapping
     label_to_index_mapping = load_labels(args.labels)
     index_to_label_list = list(label_to_index_mapping.keys())
 
-    # load the dataset and data loader
-    test_dataset = ClassifierDataset(args.embeddings, args.input, label_to_index_mapping)
-    test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False)
+    # 2. load the dataset and data loader
+    test_dataset = ClassifierDataset(
+        args.embeddings, args.input, label_to_index_mapping
+    )
+    test_loader = DataLoader(
+        test_dataset, batch_size=args.batch_size, shuffle=False
+    )
 
-    # initialize and load the trained model
     input_layer_size = test_dataset.embeddings.shape[1]
     output_layer_size = len(label_to_index_mapping)
 
+    # 3. initialize and load the trained model
     model = Classifier(input_layer_size, args.hidden_size, output_layer_size)
     state_dict = torch.load(args.model, map_location=device)
     model.load_state_dict(state_dict)
     model.to(device)
 
-    # perform evaluation
+    # 4. perform evaluation
     actual_labels, predicted_labels = evaluate_model(model, test_loader, device)
 
-    # print final metrics
+    # 5. print metrics
     print(classification_report(actual_labels, predicted_labels, target_names=index_to_label_list))
 
-    # create and plot confusion matrix
+    # 6. create confusion matrix if requested
     if args.confusion_matrix:
         # create the output directory if it doesn't exist
         output_dir = os.path.dirname(args.confusion_matrix)
