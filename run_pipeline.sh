@@ -36,7 +36,7 @@ uv run train_classifier.py \
   --dev dataset/dev.tsv \
   --dev_embeddings embedding/dev.npy \
   --labels dataset/labels.txt \
-  --epochs 100 \
+  --epochs 200 \
   --batch_size 32 \
   --learning_rate 0.001 \
   --hidden_size 64 \
