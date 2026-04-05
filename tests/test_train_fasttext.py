@@ -1,6 +1,6 @@
 import unittest
 
-from train_fasttext import tokenize
+from utils import tokenize
 
 
 class TestTokenization(unittest.TestCase):

@@ -115,10 +115,10 @@ def main():
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False)
 
     # initialize and load the trained model
-    input_size = test_dataset.embeddings.shape[1]
-    output_size = len(label_to_index_mapping)
+    input_layer_size = test_dataset.embeddings.shape[1]
+    output_layer_size = len(label_to_index_mapping)
 
-    model = Classifier(input_size, args.hidden_size, output_size)
+    model = Classifier(input_layer_size, args.hidden_size, output_layer_size)
     state_dict = torch.load(args.model, map_location=device)
     model.load_state_dict(state_dict)
     model.to(device)
