@@ -54,6 +54,18 @@ To handle Latin characters (English words) and numbers, we use a regular express
 
 The code was run on MLTGPU server under `/scratch` storage. Please refer to the full [transcript](transcript_mltgpu_scratch.txt).
 
+### Confusion Matrix Observations
+
+The model is great at predicting most of the categories, especially `science/technology` and `travel`. It completely fails at `health` and `entertainment`. In fact, it didn't guess `entertainment` at all.
+
+It seems like the model defaults to `science/technology` and `travel` whenever it doesn't know the answer. This is due to the class imbalance where these two topics make up the majority of the training data.
+
+### More Accurate Than Chance
+
+There are 7 different labels in the dataset. There is a ~14.3% (1 out of 7) chance for a random guess to be correct.
+
+According to the classification report, the model has an overall accuracy of 61%, which is way higher than 14.3%. Even for the macro and weighted average f1-score, they are 52% and 57%. This shows that the model is working and definitely performs more accurately than chance.
+
 ## Part Bonus 1 - Validation
 
 ![Performance Plot](performance_plot_mltgpu_scratch.png)
