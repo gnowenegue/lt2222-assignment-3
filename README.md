@@ -42,7 +42,7 @@ The entire process from training word embeddings to final evaluation is run via 
 
 ### Manual Execution
 
-If you wish to run each script individually with full explicit parameters, please refer to [cli_commands.md](cli_commands.md).
+If you wish to run each script individually with full explicit parameters, please refer to [cli_commands.md](doc/cli_commands.md).
 
 ## Data Strategy (Latin characters and numbers)
 
@@ -52,7 +52,7 @@ To handle Latin characters (English words) and numbers, we use a regular express
 
 ### Transcript
 
-The code was run on MLTGPU server under `/scratch` storage. Please refer to the full [transcript](transcript_mltgpu_scratch.txt).
+The code was run on MLTGPU server under `/scratch` storage. Please refer to the full [transcript](doc/transcript_mltgpu_scratch.txt).
 
 ### Confusion Matrix Observations
 
@@ -68,4 +68,4 @@ According to the classification report, the model has an overall accuracy of 61%
 
 ## Part Bonus 1 - Validation
 
-![Performance Plot](performance_plot_mltgpu_scratch.png)
+![Performance Plot](doc/performance_plot_mltgpu_scratch.png)
